@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant Menu</title>
+</head>
+<body>
+    <h1>Menu</h1>
+    <table border="1">
+        <tr>
+            <th>Item</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>GST %</th>
+        </tr>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.category }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.gst }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <a href="{% url 'create_order' %}">Create New Order</a>
+</body>
+</html>

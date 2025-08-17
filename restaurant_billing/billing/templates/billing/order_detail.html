@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Bill</title>
+</head>
+<body>
+    <h1>Bill for Order {{ order.id }}</h1>
+
+    <p><b>Order Type:</b> {{ order.order_type }}</p>
+    <p><b>Payment Method:</b> {{ order.payment_method }}</p>
+    <p><b>Date:</b> {{ order.created_at }}</p>
+
+    <h3>Items</h3>
+    <ul>
+        {% for item in order.items.all %}
+        <li>{{ item.menu_item.name }} x {{ item.quantity }} = {{ item.price }}</li>
+        {% endfor %}
+    </ul>
+
+    <p><b>GST:</b> {{ order.gst_amount }}</p>
+    <p><b>Total:</b> {{ order.total_amount }}</p>
+
+    <br>
+    <a href="{% url 'export_pdf' order.id %}">Download PDF Bill</a> |
+    <a href="{% url 'export_csv' order.id %}">Download CSV Bill</a> |
+    <a href="{% url 'menu_list' %}">Back to Menu</a>
+</body>
+</html>

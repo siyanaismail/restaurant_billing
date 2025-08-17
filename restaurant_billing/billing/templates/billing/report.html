@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sales Report</title>
+</head>
+<body>
+    <h1>Sales Report</h1>
+
+    <table border="1">
+        <tr>
+            <th>Date</th>
+            <th>Total Sales</th>
+        </tr>
+        {% for row in report %}
+        <tr>
+            <td>{{ row.created_at__date }}</td>
+            <td>{{ row.total_sales }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <a href="{% url 'menu_list' %}">Back to Menu</a>
+</body>
+</html>

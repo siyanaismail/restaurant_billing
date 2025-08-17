@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Order</title>
+</head>
+<body>
+    <h1>Create New Order</h1>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <label>Order Type:</label>
+        <select name="order_type">
+            <option value="dine-in">Dine-In</option>
+            <option value="takeaway">Takeaway</option>
+        </select>
+        <br><br>
+
+        <label>Payment Method:</label>
+        <select name="payment_method">
+            <option value="cash">Cash</option>
+            <option value="card">Card</option>
+            <option value="upi">UPI</option>
+        </select>
+        <br><br>
+
+        <h3>Select Items</h3>
+        <table border="1">
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>GST %</th>
+                <th>Quantity</th>
+                <th>Select</th>
+            </tr>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.gst }}</td>
+                <td><input type="number" name="quantities" value="1" min="1"></td>
+                <td><input type="checkbox" name="items" value="{{ item.id }}"></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+
+        <button type="submit">Generate Bill</button>
+    </form>
+</body>
+</html>
